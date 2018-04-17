@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "noImplicitAny": false,
+    "sourceMap": true
+  },
+
+  "include": [
+    "C:\\dev\\dfzh_video_manager\\src\\main\\resources\\static\\admin\\js\\*.ts"
+  ]
+}

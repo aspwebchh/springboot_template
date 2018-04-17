@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/table_data_tables.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:01 GMT -->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>H+ 后台主题UI框架 - 数据表格</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+
+    <style>
+        #page .current {
+            color: #ccc;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>搜索</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="tabs_panels.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="tabs_panels.html#">选项1</a>
+                            </li>
+                            <li><a href="tabs_panels.html#">选项2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="ibox-content" style="padding-bottom: 0px;">
+                    <form class="form-horizontal m-t">
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">玩家ID</label>
+                            <div class="col-sm-2">
+                                <input class="form-control layer-date"  id="uid"  />
+                            </div>
+
+                            <label class="col-sm-1 control-label">开始时间</label>
+                            <div class="col-sm-3">
+                                <input class="form-control layer-date" id="begin_time" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                                <label class="laydate-icon"></label>
+                            </div>
+
+                            <label class="col-sm-1 control-label">结束时间</label>
+                            <div class="col-sm-3">
+                                <input class="form-control layer-date"  id="end_time" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                                <label class="laydate-icon"></label>
+                            </div>
+
+                            <label class="col-sm-1 control-label"></label>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-primary btn-sm" id="search_btn">搜索</button>
+                                <button type="button" class="btn btn-default btn-sm" id="reset_btn">重置</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>视频列表
+                    </h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="table_data_tables.html#">选项1</a>
+                            </li>
+                            <li><a href="table_data_tables.html#">选项2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                        <tr>
+                            <th>玩家ID</th>
+                            <th>上报时间</th>
+                            <th>文件大小</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="data_list">
+
+
+                        </tbody>
+                    </table>
+                    <div id="page">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+<script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<script src="js/content.min.js?v=1.0.0"></script>
+
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/eventbase.js"></script>
+<script type="text/javascript" src="js/page.js"></script>
+<script src="js/plugins/layer/laydate/laydate.js"></script>
+
+<script th:inline="javascript">
+    function load() {
+        var dataList = /*[[${data_list}]]*/;
+        var dataCount = /*[[${data_count}]]*/;
+        var html = "";
+        for (var i = 0; i < dataList.length; i++) {
+            let item = dataList[i];
+            html += `<tr class="gradeA">
+                            <td>${item.uid}</td>
+                            <td>${item.addTime}</td>
+                            <td>${(item.fileSize / 1000).toFixed(0)}KB</td>
+                            <td>
+                                <a href="${item.filePath}">下载</a>
+                                 <a href="javacript:;" id="${item.id}" onclick="del(${item.id});">删除</a>
+                            </td>
+                        </tr>`;
+        }
+        $("#data_list").html(html);
+        const pageSize = 20;
+        renderPage("page", dataCount, pageSize);
+    }
+    
+    function del( id ) {
+        if(!confirm("确定要删除吗？")) {
+            return;
+        }
+        $.get("/del?id=" + id, function(response){
+            let data = eval("("+ response +")");
+            alert( data.message );
+            if( data.code == 0 ) {
+                window.location.reload();
+            }
+        })
+    }
+    
+    function initSearch() {
+        let searchBtn = $("#search_btn");
+        let resetBtn = $("#reset_btn");
+        searchBtn.bind("click", function(){
+            let beginTime = $.trim( $("#begin_time").val() );
+            let endTime = $.trim( $("#end_time").val() );
+            let uid = $.trim($("#uid").val());
+            let queryMap = Common.queryString();
+            let query = Common.mapToObject(queryMap);
+            if( beginTime.length > 0  ) {
+                query["begin_time"] = beginTime;
+            }
+            if( endTime.length > 0 ) {
+                query["end_time"] = endTime;
+            }
+            if( uid.length > 0 ) {
+                query["uid"] = uid;
+            }
+            window.location.href = "?" + $.param(query);
+        });
+        resetBtn.bind("click", function(){
+            let queryMap = Common.queryString();
+            let query = Common.mapToObject(queryMap);
+            delete query["begin_time"];
+            delete query["end_time"];
+            delete query["uid"];
+            window.location.href = "?" + $.param(query);
+        });
+    }
+    
+    function initFillForm() {
+        let beginTime = $("#begin_time");
+        let endTime = $("#end_time");
+        let uid = $("#uid");
+        let queryMap = Common.queryString();
+        let beginTimeVal = queryMap.get("begin_time");
+        let endTimeVal = queryMap.get("end_time");
+        let uidVal = queryMap.get("uid");
+        if( beginTimeVal) {
+            beginTimeVal = beginTimeVal.replace("+"," ");
+        }
+        if( endTimeVal) {
+            endTimeVal = endTimeVal.replace("+"," ");
+        }
+        beginTime.val(beginTimeVal);
+        endTime.val(endTimeVal);
+        uid.val(uidVal);
+    }
+    initFillForm();
+    initSearch();
+    load();
+</script>
+
+</body>
+</html>
